@@ -304,13 +304,21 @@ private struct LimitRow: View {
             }
             QuotaBar(fraction: window?.usedFraction)
             TimelineView(.periodic(from: .now, by: 60)) { context in
-                HStack(spacing: 5) {
+                HStack(alignment: .top, spacing: 5) {
                     if let window {
-                        Circle().fill(MeterPalette.used).frame(width: 4, height: 4)
-                        Text("已用 \(Int(min(100, max(0, window.usedPercent)).rounded()))%")
+                        HStack(spacing: 5) {
+                            Circle().fill(MeterPalette.used).frame(width: 4, height: 4)
+                            Text("已用 \(Int(min(100, max(0, window.usedPercent)).rounded()))%")
+                        }
                     }
                     Spacer()
-                    Text(window.map { Display.reset($0.resetDate, now: context.date) } ?? "服务端未提供该周期额度")
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text(window.map { Display.reset($0.resetDate, now: context.date) } ?? "服务端未提供该周期额度")
+                        if let date = window?.resetDate {
+                            Text("重置于 \(Display.resetTime(date, now: context.date))")
+                                .monospacedDigit()
+                        }
+                    }
                 }.font(.system(size: 10)).foregroundStyle(.secondary)
             }.help(window?.resetDate?.formatted(date: .complete, time: .standard) ?? "")
         }

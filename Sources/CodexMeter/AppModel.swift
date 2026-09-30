@@ -126,4 +126,12 @@ enum Display {
         if minutes >= 60 { return "\(minutes / 60)小时 \(minutes % 60)分钟后重置" }
         return "\(minutes)分钟后重置"
     }
+    static func resetTime(_ date: Date, now: Date = Date()) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "zh_CN")
+        formatter.timeZone = .autoupdatingCurrent
+        formatter.dateFormat = Calendar.current.component(.year, from: date) == Calendar.current.component(.year, from: now)
+            ? "M月d日 HH:mm" : "yyyy年M月d日 HH:mm"
+        return formatter.string(from: date)
+    }
 }

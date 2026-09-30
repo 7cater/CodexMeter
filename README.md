@@ -16,7 +16,7 @@
 
 ![CodexMeter 菜单栏深浅外观预览](docs/images/menu-bar-preview.png)
 
-**弹框首屏**：展示 5 小时 / 7 天额度、今日 Token 和估算费用，下滑可查看每日图表。
+**弹框首屏**：展示 5 小时 / 7 天额度、今日 Token 和估算费用；额度卡片同时显示倒计时和本机时区的具体重置日期、时间，下滑可查看每日图表。
 
 ![CodexMeter 弹框首屏预览](docs/images/dashboard-preview.png)
 
