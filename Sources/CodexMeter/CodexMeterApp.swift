@@ -102,11 +102,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             button.title = model.estimateCost ? Display.cost(model.today) : "费用已关闭"
         default:
             button.image = MenuBarGlyph.image(five: model.limits?.fiveHour, seven: model.limits?.sevenDay,
-                                     onlyFive: model.menuMode == "five")
+                                     onlyFive: model.menuMode == "five", style: model.menuStyle)
         }
         let five = model.limits?.fiveHour.map { "5h：已用 \(Int($0.usedPercent))%，剩余 \(Int($0.remainingPercent))%，\(Display.reset($0.resetDate))" } ?? "5h：暂无额度数据"
         let seven = model.limits?.sevenDay.map { "7d：已用 \(Int($0.usedPercent))%，剩余 \(Int($0.remainingPercent))%，\(Display.reset($0.resetDate))" } ?? "7d：暂无额度数据"
-        button.toolTip = "CodexMeter · 实色已用 / 淡色剩余\n\(five)\n\(seven)" + (model.usageError == nil ? "" : "\n额度刷新失败，显示上次成功数据")
+        let legend = model.menuStyle.legend(onlyFive: model.menuMode == "five")
+        button.toolTip = "CodexMeter · 实色已用 / 淡色剩余\n\(legend)\n\(five)\n\(seven)" + (model.usageError == nil ? "" : "\n额度刷新失败，显示上次成功数据")
         button.setAccessibilityValue(button.toolTip)
     }
     func applicationWillTerminate(_ notification: Notification) {

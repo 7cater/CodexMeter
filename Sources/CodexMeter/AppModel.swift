@@ -28,6 +28,9 @@ final class AppModel: ObservableObject {
     @Published var menuMode: String {
         didSet { UserDefaults.standard.set(menuMode, forKey: "menuMode") }
     }
+    @Published var menuStyle: MenuBarStyle {
+        didSet { UserDefaults.standard.set(menuStyle.rawValue, forKey: "menuStyle") }
+    }
     @Published var cliPath: String {
         didSet { UserDefaults.standard.set(cliPath, forKey: "cliPath") }
     }
@@ -41,6 +44,7 @@ final class AppModel: ObservableObject {
         refreshMinutes = [1, 5, 15].contains(interval) ? interval : 5
         estimateCost = defaults.object(forKey: "estimateCost") == nil ? true : defaults.bool(forKey: "estimateCost")
         menuMode = defaults.string(forKey: "menuMode") ?? "both"
+        menuStyle = defaults.string(forKey: "menuStyle").flatMap(MenuBarStyle.init(rawValue:)) ?? .doubleRings
         cliPath = defaults.string(forKey: "cliPath") ?? ""
         pricing = try? PricingService()
     }

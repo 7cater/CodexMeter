@@ -226,10 +226,31 @@ struct DashboardView: View {
                     Text("1 分钟").tag(1); Text("5 分钟").tag(5); Text("15 分钟").tag(15)
                 }
                 Picker("菜单栏", selection: $model.menuMode) {
-                    Text("单色用量条 · 5h + 7d").tag("both")
-                    Text("单色用量条 · 5h").tag("five")
+                    Text("使用额度 · 5h + 7d").tag("both")
+                    Text("使用额度 · 5h").tag("five")
                     Text("今日 Tokens").tag("tokens")
                     Text("今日估算费用").tag("cost")
+                }
+                if model.menuMode == "both" || model.menuMode == "five" {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Picker("图标样式", selection: $model.menuStyle) {
+                            ForEach(MenuBarStyle.allCases) { style in
+                                Text(style.title).tag(style)
+                            }
+                        }
+                        HStack {
+                            Text("预览").font(.system(size: 11)).foregroundStyle(.secondary)
+                            Spacer()
+                            Image(nsImage: MenuBarGlyph.image(five: model.limits?.fiveHour,
+                                                             seven: model.limits?.sevenDay,
+                                                             onlyFive: model.menuMode == "five",
+                                                             style: model.menuStyle))
+                                .renderingMode(.template).foregroundStyle(.primary)
+                        }
+                        Text(model.menuStyle.legend(onlyFive: model.menuMode == "five")
+                             + " · 实色已用，淡色剩余；虚线表示暂无额度数据。")
+                            .font(.system(size: 10)).foregroundStyle(.secondary)
+                    }
                 }
                 Divider()
                 Toggle("计算 Estimated API Cost", isOn: $model.estimateCost)
