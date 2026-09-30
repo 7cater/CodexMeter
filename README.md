@@ -8,6 +8,18 @@
 - 自动刷新（默认 5 分钟）、手动刷新、睡眠唤醒后刷新。
 - 设置包含登录时启动、刷新间隔、菜单栏显示模式、费用开关与 Codex CLI 路径。
 
+## 界面预览
+
+以下预览由当前版本的原生视图渲染，额度、Token 和费用使用示例数据。
+
+**菜单栏**：上排 5h、下排 7d，实色表示已使用，淡色表示剩余；系统模板图标适配深浅外观。
+
+![CodexMeter 菜单栏深浅外观预览](docs/images/menu-bar-preview.png)
+
+**弹框首屏**：展示 5 小时 / 7 天额度、今日 Token 和估算费用，下滑可查看每日图表。
+
+![CodexMeter 弹框首屏预览](docs/images/dashboard-preview.png)
+
 ## 下载与安装
 
 在 [GitHub Releases](https://github.com/7cater/CodexMeter/releases) 下载最新应用压缩包，解压后将 `CodexMeter.app` 放入 `/Applications`，双击启动。图标出现在 macOS 顶部菜单栏。
