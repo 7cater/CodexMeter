@@ -24,7 +24,7 @@
 
 在 [GitHub Releases](https://github.com/7cater/CodexMeter/releases) 下载最新应用压缩包，解压后将 `CodexMeter.app` 放入 `/Applications`，双击启动。图标出现在 macOS 顶部菜单栏。
 
-首个版本 `v0.1.0` 提供 Apple Silicon（arm64）构建，支持 macOS 14 或更新版本；Intel Mac 暂未提供预编译包。使用前需在本机 Codex / ChatGPT 应用或 Codex CLI 中完成登录。
+当前版本 [v0.1.1](https://github.com/7cater/CodexMeter/releases/tag/v0.1.1) 提供 Apple Silicon（arm64）构建，支持 macOS 14 或更新版本；Intel Mac 暂未提供预编译包。使用前需在本机 Codex / ChatGPT 应用或 Codex CLI 中完成登录。升级时请先从弹框底部退出旧版本，再替换并启动新应用。
 
 发布包采用 ad-hoc 签名，未进行 Developer ID 签名或 Apple 公证。下载后首次打开可能受到系统安全检查，请参考 [Apple 官方打开应用说明](https://support.apple.com/zh-cn/102445)。源码和构建脚本均包含在本仓库中。
 
